@@ -6,5 +6,16 @@ class SessionsController < ApplicationController
     session[:user_id] = user.id
     redirect_to root_url, :notice => "Signed in!"
   end
-  
+
+  def destroy
+    session.delete(:user_id)
+    redirect_to root_url
+  end
+
+  protected
+
+  def auth_hash
+    request.env['omniauth.auth']
+  end
+
 end
