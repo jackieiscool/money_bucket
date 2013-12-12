@@ -11,10 +11,35 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131211185711) do
+ActiveRecord::Schema.define(version: 20131212205944) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bucket_users", force: true do |t|
+    t.integer  "bucket_id"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "buckets", force: true do |t|
+    t.integer  "total"
+    t.string   "currency"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "transactions", force: true do |t|
+    t.integer  "bucket_id"
+    t.integer  "user_id"
+    t.text     "reason"
+    t.integer  "amount"
+    t.string   "currency"
+    t.string   "transaction_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "provider"
